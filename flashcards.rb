@@ -77,26 +77,41 @@ end
 "how can you filter an array with a function?:array.select{|element| element.even?} will return even elements.",
 "how can you filter an array with a function BUT return the array elements that failed the function?:array.reject{|element| element.even?} will return odd elements.",
 "explain how the .sort method works:array.sort(|first_element, second_element| second_element <=> first_element) will return a reverse order sort. the <=> (spaceship operator) returns -1,0,or 1.",
-"delete the element at index 2 of the array 'noses':noses.delete_at(2)"
+"delete the element at index 2 of the array 'noses':noses.delete_at(2)",
+"how do you make a string all lowercase?:string = string.downcase"
 ]
-
-  while ruby.length > 0
-    current = rand(0..ruby.length)
-    puts current
-    if (!ruby[current].nil?)
-      puts("##########################################################")
-      puts("#{ruby[current].split(":")[0]}")
-      puts("##########################################################","")
-      answer=gets.chomp
-      puts("answer: #{ruby[current].split(":")[1]}","")
-      correct=gets.chomp
-      if correct == ""
-        ruby.slice!(current))
+playing = true
+cardArray = []
+puts("Welcome to flashcards!\nWould you like to study ruby or javascript?")
+language = gets.chomp.downcase
+if (language == "ruby")
+  cardArray += ruby
+elsif (language == "javascript")
+  cardArray += javascript
+else
+  puts("I did not recognize that input.")
+end
+# while (playing == true)
+    puts("cardArray.length is #{cardArray.length}")
+    while cardArray.length > 0
+      current = rand(0..cardArray.length)
+      puts current
+      if (!cardArray[current].nil?)
+        puts("##########################################################")
+        puts("#{cardArray[current].split(":")[0]}")
+        puts("##########################################################","")
+        answer=gets.chomp
+        puts("answer: #{cardArray[current].split(":")[1]}","")
+        correct=gets.chomp
+        if correct == ""
+          cardArray.slice!(current)
+        end
+      else
+        puts ("this term gave me trouble")
+        puts cardArray.slice!(current)
+        puts(cardArray.length)
       end
-    else
-      puts ("this term gave me trouble")
-      puts ruby.slice!(current)
-      puts(ruby.length)
     end
-  end
+  # end
   puts("you did all of the cards!")
+# end
