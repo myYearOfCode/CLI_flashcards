@@ -91,13 +91,18 @@ elsif (language == "javascript")
 else
   puts("I did not recognize that input.")
 end
+initialLength = cardArray.length
 # while (playing == true)
     puts("cardArray.length is #{cardArray.length}")
     while cardArray.length > 0
       current = rand(0..cardArray.length)
-      puts current
+      # puts current
       if (!cardArray[current].nil?)
-        puts("##########################################################")
+        percent = ((initialLength - cardArray.length*1.0)/initialLength)
+        50.times do
+          puts
+        end
+        puts("########################################################## (#{(100*percent).round(0)}% complete.)")
         puts("#{cardArray[current].split(":")[0]}")
         puts("##########################################################","")
         answer=gets.chomp
