@@ -84,9 +84,9 @@ playing = true
 cardArray = []
 puts("Welcome to flashcards!\nWould you like to study ruby or javascript?")
 language = gets.chomp.downcase
-if (language == "ruby")
+if (language == "ruby" || language == "r")
   cardArray += ruby
-elsif (language == "javascript")
+elsif (language == "javascript" || language == "j")
   cardArray += javascript
 else
   puts("I did not recognize that input.")
