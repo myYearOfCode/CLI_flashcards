@@ -82,19 +82,21 @@ end
 ]
 playing = true
 cardArray = []
-puts("Welcome to flashcards!\nWould you like to study ruby or javascript?")
-language = gets.chomp.downcase
-if (language == "ruby" || language == "r")
-  cardArray += ruby
-elsif (language == "javascript" || language == "j")
-  cardArray += javascript
-else
-  puts("I did not recognize that input.")
-end
+while cardArray.length == 0
+  puts("Welcome to flashcards!\nWould you like to study ruby or javascript?")
+  language = gets.chomp.downcase
+  if (language == "ruby" || language == "r")
+    cardArray += ruby
+  elsif (language == "javascript" || language == "j")
+    cardArray += javascript
+  else
+    puts("I did not recognize that input.")
+  end
+end  
 initialLength = cardArray.length
 # while (playing == true)
     puts("cardArray.length is #{cardArray.length}")
-    while cardArray.length > 0
+    while cardArray.length > 0 && playing == true
       current = rand(0..cardArray.length)
       # puts current
       if (!cardArray[current].nil?)
@@ -106,10 +108,17 @@ initialLength = cardArray.length
         puts("#{cardArray[current].split(":")[0]}")
         puts("##########################################################","")
         answer=gets.chomp
+        if answer == "exit"
+          playing = false
+          break
+        end
         puts("answer: #{cardArray[current].split(":")[1]}","")
         correct=gets.chomp
         if correct == ""
           cardArray.slice!(current)
+        end
+        if correct == "exit"
+          playing = false
         end
       else
         puts ("this term gave me trouble")
@@ -118,5 +127,7 @@ initialLength = cardArray.length
       end
     end
   # end
-  puts("you did all of the cards!")
+  if (cardArray.length == 0)
+    puts("you did all of the cards!")
+  end
 # end
